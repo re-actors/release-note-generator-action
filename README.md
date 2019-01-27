@@ -19,4 +19,22 @@ The script is using environment variables and secrets to connect to GitHub and r
 
 ## Sample usage workflow configuration
 
+```
+workflow "New workflow" {
+  on = "push"
+  resolves = ["Release Notes Generator"]
+}
+
+action "Release Notes Generator" {
+  uses = "./"
+  secrets = ["GITHUB_TOKEN"]
+  env = {
+    ORG_NAME = "mmornati"
+    REPOSITORY = "docker-ghostblog"
+    MILESTONE_ID = "1"
+  }
+}
+```
+
+![Release Notes Screen](https://res.cloudinary.com/blog-mornati-net/image/upload/v1548587321/Capture_d_e%CC%81cran_2019-01-27_a%CC%80_12.08.31_m8eoop.png)
 
